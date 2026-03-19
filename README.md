@@ -1,4 +1,4 @@
-# Emotion Detection Web Application
+## oaqjp-final-project-emb-ai
 
 ## 📌 Overview
 
