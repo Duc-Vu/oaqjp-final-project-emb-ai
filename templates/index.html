@@ -4,15 +4,18 @@
     <title>Emotion Detector</title>
 </head>
 <body>
-    <h2>Emotion Detection</h2>
 
-    <form action="/emotionDetector" method="GET">
-        <input type="text" name="textToAnalyze" placeholder="Enter text">
-        <button type="submit">Analyze</button>
-    </form>
+<h2>Emotion Detection</h2>
 
-    {% if result %}
-        <p>{{ result }}</p>
-    {% endif %}
+<form action="/emotionDetector" method="GET">
+    <input type="text" name="textToAnalyze" placeholder="Enter text">
+    <button type="submit">Analyze</button>
+</form>
+
+{% if result %}
+    <h3>Result:</h3>
+    <p>{{ result }}</p>
+{% endif %}
+
 </body>
 </html>
