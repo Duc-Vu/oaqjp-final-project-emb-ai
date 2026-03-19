@@ -1,17 +1,23 @@
-from flask import Flask, request, jsonify
+import unittest
 from emotion_detection.emotion_detection import emotion_detector
 
-app = Flask(__name__)
+class TestEmotionDetector(unittest.TestCase):
 
-@app.route("/emotion", methods=["POST"])
-def detect_emotion():
-    data = request.get_json()
+    def test_valid_input(self):
+        result = emotion_detector("I am happy")
+        self.assertIn("dominant_emotion", result)
 
-    text = data.get("text")
+    def test_empty_input(self):
+        result = emotion_detector("")
+        self.assertIn("error", result)
 
-    result = emotion_detector(text)
+    def test_no_text_meaning(self):
+        result = emotion_detector("...")
+        self.assertIsInstance(result, dict)
 
-    return jsonify(result)
+    def test_negative_emotion(self):
+        result = emotion_detector("I hate everything")
+        self.assertIn("dominant_emotion", result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    unittest.main()
